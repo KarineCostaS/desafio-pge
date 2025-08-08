@@ -210,4 +210,4 @@ x-access-token: {{token}}
 
 - Sempre selecione o ambiente **Ambiente Teste PGE** no Postman antes de executar.  
 - Atualize os valores das variáveis `cpf` e `cpf_protestado` para evitar conflitos durante testes.  
-- O token tem validade limitada; refaça o login para renová-lo quando necessário.
+- O token tem validade limitada; refaça o login sempre que necessário.
