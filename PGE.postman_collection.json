@@ -1,0 +1,292 @@
+{
+	"info": {
+		"_postman_id": "dceb911c-ef3a-4a16-9d9d-5c14c1441e4f",
+		"name": "PGE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23462430"
+	},
+	"item": [
+		{
+			"name": "Autenticação - Token",
+			"item": [
+				{
+					"name": "Login Dados Valido",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"if (pm.response.code === 200) {\r",
+									"    var jsonData = pm.response.json();\r",
+									"    pm.environment.set(\"token\", jsonData.token);\r",
+									"}"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"usuario\": \"admin\",\r\n  \"senha\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login Dados Invalidos",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"usuario\": \"admin_teste\",\r\n  \"senha\": \"password\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cadastro de Contribuintes",
+			"item": [
+				{
+					"name": "Cadastro com Dados Validos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"description": "Token que é gerado no login",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"{{cpf}}\",\r\n  \"nome\": \"João da Silva\",\r\n  \"data_nascimento\": \"1990-01-01\",\r\n  \"nome_mae\": \"Maria da Silva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contribuintes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contribuintes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro com Dados Invalidos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"ABC\",\r\n  \"nome\": \"João da Silva\",\r\n  \"data_nascimento\": \"1990-01-01\",\r\n  \"nome_mae\": \"Maria da Silva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contribuintes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contribuintes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro com CPF Duplicado",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"{{cpf}}\",\r\n  \"nome\": \"João da Silva\",\r\n  \"data_nascimento\": \"1990-01-01\",\r\n  \"nome_mae\": \"Maria da Silva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contribuintes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contribuintes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Cadastro com campos faltantes",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"\",\r\n  \"nome\": \"\",\r\n  \"data_nascimento\": \"1990-01-01\",\r\n  \"nome_mae\": \"Maria da Silva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contribuintes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contribuintes"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Consulta de Inscrições",
+			"item": [
+				{
+					"name": "Consulta CPF Protestado",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"description": "Token",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/inscricoes/{{cpf_protestado}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inscricoes",
+								"{{cpf_protestado}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CPF Inexistente",
+					"request": {
+						"method": "GET",
+						"header": []
+					},
+					"response": []
+				},
+				{
+					"name": "Consulta sem token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"description": "Token",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/inscricoes/{{cpf}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inscricoes",
+								"{{cpf}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
