@@ -11,11 +11,14 @@ Este relatório apresenta o processo de testes automatizados realizados com **Cy
 ### **1.2 - Cenários de Teste Automatizados**
 - **CT 01** – Cadastro de Contribuinte com CPF válido  
 - **CT 02** – Cadastro de Contribuinte com CPF inválido *(bug identificado)*  
-- **CT 03** – Cadastro de Contribuinte com CPF duplicado *(bug identificado)*  
-- **CT 04** – Consulta de Contribuinte existente  
-- **CT 05** – Consulta de Contribuinte inexistente  
-- **CT 06** – Cadastro sem token de autenticação  
-- **CT 07** – Cadastro com campos obrigatórios ausentes  
+- **CT 03** – Cadastro de Contribuinte com CPF duplicado *(bug identificado)*
+- **CT 04** – Cadastro de Contribuinte com campos obrigatorios em branco  
+- **CT 05** - Cadastro de Contribuinte sem Token 
+- **CT 06** – Consulta de Contribuinte existente na base de Protesto 
+- **CT 07** – Consulta de Contribuinte inexistente  na base de Protesto
+- **CT 08** – Cadastro de Inscrição na Base de Protesto token de autenticação  
+- **CT 09** - Login com credenciais válidas
+- **CT 10** - Login com credenciais invalidas
 
 ---
 
