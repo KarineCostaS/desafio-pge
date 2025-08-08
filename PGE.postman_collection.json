@@ -209,6 +209,38 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Cadastro com Token Invalido",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "token-invalido",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"cpf\": \"\",\r\n  \"nome\": \"\",\r\n  \"data_nascimento\": \"1990-01-01\",\r\n  \"nome_mae\": \"Maria da Silva\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/contribuintes",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"contribuintes"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -253,10 +285,26 @@
 					"response": []
 				},
 				{
-					"name": "CPF Inexistente",
+					"name": "CPF Inexistente na Base",
 					"request": {
 						"method": "GET",
-						"header": []
+						"header": [
+							{
+								"key": "x-access-token",
+								"value": "{{token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/inscricoes/{{cpf}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"inscricoes",
+								"{{cpf}}"
+							]
+						}
 					},
 					"response": []
 				},
