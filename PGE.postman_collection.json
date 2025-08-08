@@ -223,7 +223,7 @@
 						],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n  \"cpf\": \"\",\r\n  \"nome\": \"\",\r\n  \"data_nascimento\": \"1990-01-01\",\r\n  \"nome_mae\": \"Maria da Silva\"\r\n}",
+							"raw": "{\r\n  \"cpf\": \"{{cpf}}\",\r\n  \"nome\": \"Maria Julia\",\r\n  \"data_nascimento\": \"1990-01-01\",\r\n  \"nome_mae\": \"Maria da Silva\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
